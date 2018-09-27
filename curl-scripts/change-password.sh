@@ -5,9 +5,8 @@ curl "https://tic-tac-toe-wdi.herokuapp.com/change-password" \
 --header "Authorization: Token token=${TOKEN}" \
 --data '{
   "passwords": {
-    "old": "'"${OLD_PASSWORD}"'",
-    "password":"'"${NEW_PASSWORD}"'",
-    "password_confirmation": "'"${PASSWORD}"'"
+    "old": "'"${OLD}"'",
+    "new":"'"${NEW}"'",
   }
 }'
 
