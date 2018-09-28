@@ -11,6 +11,6 @@ $(() => {
   console.log('You are in the right console window')
   $('#sign-up-form').on('submit', events.signUpEvent)
   $('#sign-in-form').on('submit', events.signInEvent)
-  $('#change-password-button').on('submit', events.changePasswordEvent)
+  $('#change-password-form').on('submit', events.changePasswordEvent)
   $('#sign-out-button').on('click', events.signOutEvent)
 })

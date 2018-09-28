@@ -6,7 +6,6 @@ const userInterface = require(`./ui.js`)
 
 const signUpEvent = (e) => {
   e.preventDefault()
-  console.log('The button was pressed')
 
   const data = getFormFields(event.target) // The target property returns the element that triggered the event, and not necessarily the event-listener's element
   ajaxCalls.signUpAjaxCall(data) // file and function to be created
@@ -27,16 +26,14 @@ const changePasswordEvent = (e) => {
   e.preventDefault()
   const theFormInputsAreStoredHere = getFormFields(event.target)
 
-  ajaxCalls.onChangePasswordAjaxCall(theFormInputsAreStoredHere)
+  ajaxCalls.changePasswordAjaxCall(theFormInputsAreStoredHere)
     .then(userInterface.changePasswordSuccessAtUserInterface)
     .catch(userInterface.changePasswordFailureAtUserInterface)
 }
 
-const signOutEvent = (e) => {
-  const data = getFormFields(e.target)
+const signOutEvent = () => {
   console.log('Sign out is running')
-  e.preventDefault()
-  ajaxCalls.signOutAtAjaxCall(data)
+  ajaxCalls.signOutAtAjaxCall()
     .then(userInterface.signOutSuccessAtUserInterface)
     .catch(userInterface.signOutFailureAtUserInterface)
 }

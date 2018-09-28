@@ -5,15 +5,14 @@ const store = require('./store')
 const signUpSuccessAtUserInterface = () => {
   $('#display-sign-up-message').html('Sign up was successful')
   $('#display-sign-up-message').css('color', 'green')
-  $('#sign-up-button').trigger('reset')
+  $('#sign-up-form').trigger('reset')
   console.log('you pressed a button')
 }
 
 const signUpFailureAtUserInterface = () => {
   $('#display-sign-up-message').html('Sign up was NOT successful')
   $('#display-sign-up-message').css('color', 'red')
-  $('#sign-up-button').trigger('reset')
-  console.log('you pressed a button')
+  $('#sign-up-form').trigger('reset')
 }
 
 const signInSuccessAtUserInterface = (response) => {
@@ -41,11 +40,25 @@ const signOutFailureAtUserInterface = () => {
   $('#sign-out-button').trigger('reset')
 }
 
+const changePasswordSuccessAtUserInterface = () => {
+  $('#display-change-password-message').html('You have successfully change your password')
+  $('#display-change-password-message').css('color', 'green')
+  $('#change-password-form').trigger('reset')
+}
+
+const changePasswordFailureAtUserInterface = () => {
+  $('#display-change-password-message').html('Sorry, we were not able to change your password')
+  $('#display-change-password-message').css('color', 'red')
+  $('#change-password-button').trigger('reset')
+}
+
 module.exports = {
   signUpSuccessAtUserInterface,
   signUpFailureAtUserInterface,
   signInSuccessAtUserInterface,
   signInFailureAtUserInterface,
   signOutSuccessAtUserInterface,
-  signOutFailureAtUserInterface
+  signOutFailureAtUserInterface,
+  changePasswordSuccessAtUserInterface,
+  changePasswordFailureAtUserInterface
 }

@@ -23,8 +23,8 @@ const signInAjaxCall = (dataFromDatabase) => {
   })
 }
 
-const onChangePasswordAjaxCall = (passwordDataFromDatabase) => {
-  console.lot(passwordDataFromDatabase)
+const changePasswordAjaxCall = (passwordDataFromDatabase) => {
+  console.log(passwordDataFromDatabase)
 
   return $.ajax({
     url: config.apiUrl + '/change-password',
@@ -52,5 +52,5 @@ module.exports = {
   signUpAjaxCall,
   signInAjaxCall,
   signOutAtAjaxCall,
-  onChangePasswordAjaxCall
+  changePasswordAjaxCall
 }
