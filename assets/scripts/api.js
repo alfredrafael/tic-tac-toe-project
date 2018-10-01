@@ -48,9 +48,22 @@ const signOutAtAjaxCall = () => {
   })
 }
 
+const updateGameAjaxCall = (dataPassedToTheDataBase) => {
+  return $.ajax({
+    url: config.apiUrl + /games/ + store.game.id,
+    method: 'PATCH',
+    headers: {
+      contentType: 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    },
+    dataPassedToTheDataBase
+  })
+}
+
 module.exports = {
   signUpAjaxCall,
   signInAjaxCall,
   signOutAtAjaxCall,
-  changePasswordAjaxCall
+  changePasswordAjaxCall,
+  updateGameAjaxCall
 }

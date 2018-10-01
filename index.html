@@ -13,6 +13,7 @@
     </head>
     <body>
       <div class="container-fluid">
+        <div class="jumbotron">
       <h1>Tic Tac Toe Online</h1>
       <h3 id="display-sign-up-message"><!--Status shall be displayed here--></h3>
       <form id="sign-up-form">
@@ -40,40 +41,50 @@
       <br/>
 
       <button id="sign-out-button" class="" value="">Sign Out</button>
+      </div>
 
       <h3 id="display-change-password-message"><!--Status shall be displayed here--></h3>
       <form id="change-password-form">
         <fieldset>
         <legend> Want to change password? Click here </legend>
-          <input  placeholder="Enter your old password" name="passwords[old]" type="password"/>
-          <input  placeholder="Enter your new password" name="passwords[new]" type="password"/>
+          <input  placeholder="Enter old password" name="passwords[old]" type="password"/>
+          <input  placeholder="Enter new password" name="passwords[new]" type="password"/>
           <input type="submit" id="change-password-button" value="Change password"/>
         </fieldset>
       </form>
       <br>
       <section>
         <h3>Click the board to play</h3>
-<div class="container-fluid">
-          <div class="row top-rows">
-            <div class="col" id="top-left-row-0" style="background-color:#b8c3d6; border: .25px black solid"> X </div>
-            <div class="col" id="top-center-row-1" style="border: .25px black solid"> O </div>
-            <div class="col" id="top-right-row-2" style="background-color:#b8c3d6"> X </div>
-          </div>
 
-          <div class="row middle-rows">
-            <div class="col" id="middle-left-row-3" style="border: .25px black solid"> X </div>
-            <div class="col" id="middle-center-row-4" style="background-color:#b8c3d6; border: .25px black solid"> O </div>
-            <div class="col" id="middle-right-row-5" style="border: .25px black solid"> X </div>
-          </div>
+      <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-sm-2 extra-padding"> </div>
+            <div class="col-12 col-sm-6 content">
+              <div class="container-fluid tic-container">
+                <div class="row tic-row">
+                  <div class="col-4 tic-box" id="top-left-row-0" data-index=0> </div>
+                  <div class="col-4 tic-box" id="top-center-row-1" data-index=1>  </div>
+                  <div class="col-4 tic-box" id="top-rigth-row-2" data-index=2> </div>
+                </div>
+                <div class="row tic-row">
+                  <div class="col-4 tic-box" id="middle-left-row-3" data-index=3>  </div>
+                  <div class="col-4 tic-box" id="middle-center-row-4" data-index=4>  </div>
+                  <div class="col-4 tic-box" id="middle-rigth-row-5" data-index=5>  </div>
+                </div>
+                <div class="row tic-row">
+                  <div class="col-4 tic-box" id="bottom-left-row-6" data-index=1>  </div>
+                  <div class="col-4 tic-box" id="bottom-center-row-7" data-index=1>  </div>
+                  <div class="col-4 tic-box" id="bottom-rigth-row-8" data-index=1>  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br> <button class="btn btn-primary"> New Game</button> <button> Reset </button><br> More stuff here </div>
 
-          <div class="row bottom-rows">
-            <div class="col" id="bottom-left-row-6" style="background-color:#b8c3d6; border: .25px black solid"> X </div>
-            <div class="col" id="bottom-center-row-7" style="border: .25px black solid"> O </div>
-            <div class="col" id="bottom-right-row-8" style="background-color:#b8c3d6; border: .25px black solid"> X </div>
+
+
+            <div class="col-12 col-sm-2 extra-padding"> </div>
           </div>
         </div>
-      </section>
-
 
 
     </div>

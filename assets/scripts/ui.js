@@ -12,14 +12,14 @@ const signUpSuccessAtUserInterface = () => {
 const signUpFailureAtUserInterface = () => {
   $('#display-sign-up-message').html('Sign up was NOT successful')
   $('#display-sign-up-message').css('color', 'red')
-  $('#sign-up-form').trigger('reset')
+  $('#sign-in-form').trigger('reset')
 }
 
 const signInSuccessAtUserInterface = (response) => {
   $('#display-log-in-message').html('Sign up was successful')
   console.log(store.user = response.user)
   $('#display-log-in-message').css('color', 'green')
-  $('#sign-in-button').trigger('reset')
+  $('#sign-in-form').trigger('reset')
 }
 
 const signInFailureAtUserInterface = () => {
@@ -50,6 +50,15 @@ const changePasswordFailureAtUserInterface = () => {
   $('#display-change-password-message').html('Sorry, we were not able to change your password')
   $('#display-change-password-message').css('color', 'red')
   $('#change-password-button').trigger('reset')
+}
+
+const updateGameSuccess = function () {
+  $('#display-update-message').text('Game updated!')
+}
+
+const updateGameFailure = function () {
+  $('#display-update-message').text('Game updated!')
+
 }
 
 module.exports = {
