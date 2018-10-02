@@ -56,7 +56,6 @@ const createNewGameSuccess = (responseFromServer) => {
   $('#display-game-message').text('YOU HAVE STARTED A NEW GAME!')
   store.game = responseFromServer.game
   console.log(store.game)
-
 }
 
 const createNewGameFailure = function () {
@@ -67,7 +66,6 @@ const updateGameSuccess = function () {
   $('#display-game-message').text('Game updated!')
   console.log('It does something')
 }
-
 
 const updateGameFailure = function () {
   $('#display-update-message').text('Game NOT updated!')
