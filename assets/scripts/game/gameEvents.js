@@ -2,6 +2,7 @@
 
 const ajaxCalls = require(`../api.js`)
 const userInterface = require(`../ui.js`)
+const store = require('../store')
 
 const gameBoard = [ '', '', '', '', '', '', '', '', ''
   // 0, 1, 2
@@ -19,34 +20,45 @@ const dataToUpdateGameApi = {
   }
 }
 
+const createNewGame = () => {
+  // $(event.target).text('') // makes it reset
+  //  $('#whatIwantTomakeAppear').show()
+  //  $('')
+
+  console.log('create new game function is firinG')
+  store.game = {}
+  store.toggleTurn = 0
+
+  ajaxCalls.createNewGameAjaxCall()
+    .then(userInterface.createNewGameSuccess)
+    .catch(userInterface.createNewGameFailure)
+}
+
 const updateGame = function (dataToUpdateGameApi) {
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
     .then(userInterface.updateGameSuccess)
     .catch(userInterface.updateGameFailure)
 }
 
-let toggleTurn = 0
 
-const clickedBox = function () {
-  alert('a box was clicked')
-  for (let i = 0; i < gameBoard.length; i++) {
-    $('# ' + i).click(function () {
-      if (toggleTurn % 2 === 0) {
-        $(this).text('X')
-        gameBoard[this.id] === 'X'
-        $(this).attr('disabled', true)
-      } else {
-        $(this).text('O')
-        gameBoard[this.id]
-        $(this).attr('disabled', true)
-      }
-      dataToUpdateGameApi.game.cell.index = this.id
-      dataToUpdateGameApi.game.cell.value = gameBoard[this.id]
-      checkForResult()
-      updateGameEvent(dataToUpdateGameApi)
-      toggleTurn++
-    })
+const clickedBox = function (i) {
+  // alert('a box was clicked')
+  if (store.toggleTurn % 2 === 0) {
+    $(`#game-box-${i}`).text('X')
+    store.game.cells[i] = 'X'
+  //  gameBoard[i] = 'X'
+  } else {
+    $(`#game-box-${i}`).text('O')
+    store.game.cells[i] = 'O'
+  //  gameBoard[i] = 'O'
   }
+  $(`#game-box-${i}`).attr('disabled', true)
+  console.log(store.game)
+  dataToUpdateGameApi.game.cell.index = i // lets store the value of game.cell.index into 'i'
+  dataToUpdateGameApi.game.cell.value = gameBoard[i]
+  // checkForResult()
+  ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
+  store.toggleTurn++
 }
 // create code so when you click on the div/board, it fires and translate that
 const checkForResult = () => {
@@ -71,10 +83,14 @@ const checkForResult = () => {
   }
 }
 
-// checkForResult()
+//
+// If there are 9 moves 'store.toggle >= 9'... 'its a tie... '
+// then... make the checkForResult() connect to the UI
 
 module.exports = {
   clickedBox,
   updateGame,
-  checkForResult
+  checkForResult,
+  gameBoard,
+  createNewGame
 }

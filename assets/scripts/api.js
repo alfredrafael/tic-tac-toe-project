@@ -48,6 +48,19 @@ const signOutAtAjaxCall = () => {
   })
 }
 
+// CREATE THE  GAME AI (CONSLE.LOG(RESPONSE.GAME)) STORE THAT GAME...
+
+const createNewGameAjaxCall = function (responseFromServer) {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'POST',
+    headers: {
+      contentType: 'application/json',
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 const updateGameAjaxCall = (dataPassedToTheDataBase) => {
   return $.ajax({
     url: config.apiUrl + /games/ + store.game.id,
@@ -56,7 +69,7 @@ const updateGameAjaxCall = (dataPassedToTheDataBase) => {
       contentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
-    dataPassedToTheDataBase
+    data: dataPassedToTheDataBase
   })
 }
 
@@ -65,5 +78,6 @@ module.exports = {
   signInAjaxCall,
   signOutAtAjaxCall,
   changePasswordAjaxCall,
+  createNewGameAjaxCall,
   updateGameAjaxCall
 }

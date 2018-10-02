@@ -15,13 +15,35 @@ $(() => {
   $('#change-password-form').on('submit', events.changePasswordEvent)
   $('#sign-out-button').on('click', events.signOutEvent)
 
-  $('#top-left-row-0').on('click', gameEvents.clickedBox)
-  $('#top-center-row-1').on('click', gameEvents.clickedBox)
-  $('#top-rigth-row-2').on('click', gameEvents.clickedBox)
-  $('#middle-left-row-3').on('click', gameEvents.clickedBox)
-  $('#middle-center-row-4').on('click', gameEvents.clickedBox)
-  $('#middle-rigth-row-5').on('click', gameEvents.clickedBox)
-  $('#bottom-left-row-6').on('click', gameEvents.clickedBox)
-  $('#bottom-center-row-7').on('click', gameEvents.clickedBox)
-  $('#bottom-rigth-row-8').on('click', gameEvents.clickedBox)
+  for (let i = 0; i < gameEvents.gameBoard.length; i++) {
+    $(`#game-box-${i}`).on('click', function () {
+      gameEvents.clickedBox(i)
+    })
+  }
+
+  $('#new-game-button').on('click', gameEvents.createNewGame)
 })
+
+/*
+
+.--.         .--.
+              \       /
+       |\      `\___/'       /|
+        \\    .-'@ @`-.     //
+        ||  .'_________`.  ||
+         \\.'^    Y    ^`.//
+         .'       |       `.
+        :         |         :
+       :          |          :
+       :          |          :
+       :     _    |    _     :
+       :.   (_)   |   (_)    :
+     __::.        |          :__
+    /.--::.       |         :--.\
+ __//'   `::.     |       .'   `\\___
+`--'     //`::.   |     .'\\     `--'
+         ||  `-.__|__.-'   ||
+jgs      ||                ||
+         //                \\
+        |/                  \|
+*/

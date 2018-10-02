@@ -6,7 +6,6 @@ const signUpSuccessAtUserInterface = () => {
   $('#display-sign-up-message').html('Sign up was successful')
   $('#display-sign-up-message').css('color', 'green')
   $('#sign-up-form').trigger('reset')
-  console.log('you pressed a button')
 }
 
 const signUpFailureAtUserInterface = () => {
@@ -16,8 +15,8 @@ const signUpFailureAtUserInterface = () => {
 }
 
 const signInSuccessAtUserInterface = (response) => {
-  $('#display-log-in-message').html('Sign up was successful')
-  console.log(store.user = response.user)
+  $('#display-log-in-message').html('Sign in was successful')
+  console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
   $('#display-log-in-message').css('color', 'green')
   $('#sign-in-form').trigger('reset')
 }
@@ -52,13 +51,26 @@ const changePasswordFailureAtUserInterface = () => {
   $('#change-password-button').trigger('reset')
 }
 
-const updateGameSuccess = function () {
-  $('#display-update-message').text('Game updated!')
+const createNewGameSuccess = (responseFromServer) => {
+  console.log(responseFromServer)
+  $('#display-game-message').text('YOU HAVE STARTED A NEW GAME!')
+  store.game = responseFromServer.game
+  console.log(store.game)
+
 }
 
-const updateGameFailure = function () {
-  $('#display-update-message').text('Game updated!')
+const createNewGameFailure = function () {
+  $('#display-game-message').text('CANT CREATE THE GAME!')
+}
 
+const updateGameSuccess = function () {
+  $('#display-game-message').text('Game updated!')
+  console.log('It does something')
+}
+
+
+const updateGameFailure = function () {
+  $('#display-update-message').text('Game NOT updated!')
 }
 
 module.exports = {
@@ -69,5 +81,9 @@ module.exports = {
   signOutSuccessAtUserInterface,
   signOutFailureAtUserInterface,
   changePasswordSuccessAtUserInterface,
-  changePasswordFailureAtUserInterface
+  changePasswordFailureAtUserInterface,
+  createNewGameSuccess,
+  createNewGameFailure,
+  updateGameSuccess,
+  updateGameFailure
 }

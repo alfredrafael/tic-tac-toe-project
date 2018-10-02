@@ -47,7 +47,7 @@
       <form id="change-password-form">
         <fieldset>
         <legend> Want to change password? Click here </legend>
-          <input  placeholder="Enter old password" name="passwords[old]" type="password"/>
+          <input placeholder="Enter old password" class="form-control" name="passwords[old]" type="password"/>
           <input  placeholder="Enter new password" name="passwords[new]" type="password"/>
           <input type="submit" id="change-password-button" value="Change password"/>
         </fieldset>
@@ -55,30 +55,30 @@
       <br>
       <section>
         <h3>Click the board to play</h3>
-
+<h3 id="display-game-message"> </h3>
       <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-sm-2 extra-padding"> </div>
             <div class="col-12 col-sm-6 content">
               <div class="container-fluid tic-container">
                 <div class="row tic-row">
-                  <div class="col-4 tic-box" id="top-left-row-0" data-index=0> </div>
-                  <div class="col-4 tic-box" id="top-center-row-1" data-index=1>  </div>
-                  <div class="col-4 tic-box" id="top-rigth-row-2" data-index=2> </div>
+                  <div class="col-4 tic-box top-left-row-0" id="game-box-0" data-index='0'> </div>
+                  <div class="col-4 tic-box top-center-row-1" id="game-box-1" data-index='1'>  </div>
+                  <div class="col-4 tic-box top-rigth-row-2" id="game-box-2" data-index='2'> </div>
                 </div>
                 <div class="row tic-row">
-                  <div class="col-4 tic-box" id="middle-left-row-3" data-index=3>  </div>
-                  <div class="col-4 tic-box" id="middle-center-row-4" data-index=4>  </div>
-                  <div class="col-4 tic-box" id="middle-rigth-row-5" data-index=5>  </div>
+                  <div class="col-4 tic-box middle-left-row-3" id="game-box-3" data-index='3'>  </div>
+                  <div class="col-4 tic-box middle-center-row-4" id="game-box-4" data-index='4'>  </div>
+                  <div class="col-4 tic-box middle-rigth-row-5" id="game-box-5" data-index='5'>  </div>
                 </div>
                 <div class="row tic-row">
-                  <div class="col-4 tic-box" id="bottom-left-row-6" data-index=1>  </div>
-                  <div class="col-4 tic-box" id="bottom-center-row-7" data-index=1>  </div>
-                  <div class="col-4 tic-box" id="bottom-rigth-row-8" data-index=1>  </div>
+                  <div class="col-4 tic-box bottom-left-row-6" id="game-box-6" data-index='6'>  </div>
+                  <div class="col-4 tic-box bottom-center-row-7" id="game-box-7" data-index='7'>  </div>
+                  <div class="col-4 tic-box bottom-rigth-row-8" id="game-box-8" data-index='8'>  </div>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br> <button class="btn btn-primary"> New Game</button> <button> Reset </button><br> More stuff here </div>
+            <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br> <button id="new-game-button" class="btn btn-primary"> New Game</button> <button> Reset </button><br> More stuff here </div>
 
 
 
