@@ -2,6 +2,10 @@
 
 const store = require('./store')
 
+$(() => {
+  $('#section-gameBoard').hide()
+})
+
 const signUpSuccessAtUserInterface = () => {
   $('#display-sign-up-message').html('Sign up was successful')
   $('#display-sign-up-message').css('color', 'green')
@@ -18,6 +22,8 @@ const signInSuccessAtUserInterface = (response) => {
   $('#display-log-in-message').html('Sign in was successful')
   console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
   $('#display-log-in-message').css('color', 'green')
+  $('#section-gameBoard').show()
+
   $('#sign-in-form').trigger('reset')
 }
 
@@ -30,6 +36,7 @@ const signInFailureAtUserInterface = () => {
 const signOutSuccessAtUserInterface = () => {
   $('#display-log-in-message').html('You are successfully logged out')
   $('#display-log-in-message').css('color', 'green')
+  $('#section-gameBoard').hide()
   $('#sign-out-button').trigger('reset')
 }
 
@@ -85,3 +92,7 @@ module.exports = {
   updateGameSuccess,
   updateGameFailure
 }
+
+/*
+
+*/

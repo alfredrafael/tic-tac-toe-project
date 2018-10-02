@@ -15,48 +15,53 @@
       <div class="container-fluid">
         <div class="jumbotron">
       <h1>Tic Tac Toe Online</h1>
+    <div class="makeInline1">
       <h3 id="display-sign-up-message"><!--Status shall be displayed here--></h3>
       <form id="sign-up-form">
         <fieldset>
         <legend> Sign up to play !</legend>
-          <input  placeholder="Enter your Email" name="credentials[email]" type="email"/>
-          <input  placeholder="Enter your password" name="credentials[password]" type="password"/>
-          <input placeholder="Re-enter password" name="credentials[password_confirmation]" type="password"/>
-          <input type="submit" id="sign-up-button" class='theButton' value="Sign Up"/>
+          <input  placeholder="Enter your Email" class="form-control" style="width: 300px" name="credentials[email]" type="email"/>
+          <input  placeholder="Enter your password" class="form-control" style="width: 300px" name="credentials[password]" type="password"/>
+          <input placeholder="Re-enter password" class="form-control" style="width: 300px" name="credentials[password_confirmation]" type="password"/>
+          <br/>
+          <input type="submit" id="sign-up-button" class='theButton btn btn-primary' value="Sign Up"/>
         </fieldset>
       </form>
-
-      <p style="text-align: center"> OR </p>
-
+      <br/>
+    </div>
+      <p style="font-size: 30px"> <strong> OR </strong></p>
+<div class="makeInline">
       <form id="sign-in-form">
         <h3 id="display-log-in-message"><!--Status shall be displayed here--></h3>
 
         <fieldset>
         <legend> Sign in to continue playing !</legend>
-          <input  placeholder="Enter your Email" name="credentials[email]" type="email"/>
-          <input  placeholder="Enter your password" name="credentials[password]" type="password"/>
-          <input type="submit" id="sign-in-button" value="Log In"/>
+          <input  placeholder="Enter your Email" name="credentials[email]" class="form-control" style="width: 300px" type="email"/>
+          <input  placeholder="Enter your password" name="credentials[password]" class="form-control" style="width: 300px" type="password"/>
+          <br/>
+          <input type="submit" id="sign-in-button" class='theButton btn btn-primary' value="Log In !"/>
         </fieldset>
       </form>
       <br/>
 
-      <button id="sign-out-button" class="" value="">Sign Out</button>
+      <button id="sign-out-button" class="btn btn-danger" value="">Sign Out</button>
       </div>
-
-      <h3 id="display-change-password-message"><!--Status shall be displayed here--></h3>
-      <form id="change-password-form">
-        <fieldset>
-        <legend> Want to change password? Click here </legend>
-          <input placeholder="Enter old password" class="form-control" name="passwords[old]" type="password"/>
-          <input  placeholder="Enter new password" name="passwords[new]" type="password"/>
-          <input type="submit" id="change-password-button" value="Change password"/>
-        </fieldset>
-      </form>
+    </div>
+</div>
       <br>
-      <section>
+      <section id="section-gameBoard">
+        <form id="change-password-form">
+          <fieldset>
+          <legend> Want to change password? Click here </legend>
+            <input placeholder="Enter old password" name="passwords[old]" type="password"/>
+            <input placeholder="Enter new password" name="passwords[new]" type="password"/>
+            <input type="submit" id="change-password-button" value="Change password"/>
+          </fieldset>
+        </form>
         <h3>Click the board to play</h3>
+        <h3 id="display-change-password-message"><!--Status shall be displayed here--></h3>
 <h3 id="display-game-message"> </h3>
-      <div class="container-fluid">
+      <div class="container-fluid" id="divWithBoard">
           <div class="row">
             <div class="col-12 col-sm-2 extra-padding"> </div>
             <div class="col-12 col-sm-6 content">
@@ -78,15 +83,15 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br> <button id="new-game-button" class="btn btn-primary"> New Game</button> <button> Reset </button><br> More stuff here </div>
-
-
+            <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br> <button id="new-game-button" class="btn btn-success"> New Game</button>
+              <br/>
+              <hr/>
+              <button class="btn btn-secondary"> Reset </button>
+              <br/> More stuff here </div>
 
             <div class="col-12 col-sm-2 extra-padding"> </div>
           </div>
         </div>
-
-
-    </div>
+      </section>
     </body>
 </html>

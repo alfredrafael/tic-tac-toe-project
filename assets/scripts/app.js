@@ -1,6 +1,6 @@
 'use strict'
 const events = require('./events.js')
-const gameEvents = require('./game/gameEvents.js') // lo pido
+const gameEvents = require('./game/gameEvents.js') // lo pido para este documento
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
@@ -43,7 +43,21 @@ $(() => {
  __//'   `::.     |       .'   `\\___
 `--'     //`::.   |     .'\\     `--'
          ||  `-.__|__.-'   ||
-jgs      ||                ||
+         ||                ||
          //                \\
         |/                  \|
+
+
+
+
+
+        \   /
+           .\-/.
+       /\ ()   ()
+      /  \/~---~\.-~^-.
+   .-~^-./   |   \---.
+        {    |    }   \
+      .-~\   |   /~-.
+     /    \  A  /    \
+           \/ \/
 */
