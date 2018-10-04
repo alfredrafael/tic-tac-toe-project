@@ -3,7 +3,8 @@
 const store = require('./store')
 
 $(() => {
-  $('#section-gameBoard').hide()
+  $('#user-options-after-sign-in').hide()
+  $('#divWithBoard').hide()
 })
 
 const signUpSuccessAtUserInterface = () => {
@@ -22,9 +23,11 @@ const signInSuccessAtUserInterface = (response) => {
   $('#display-log-in-message').html('Sign in was successful')
   console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
   $('#display-log-in-message').css('color', 'green')
-  $('#section-gameBoard').show()
-
+  $('#user-options-after-sign-in').show()
   $('#sign-in-form').trigger('reset')
+  $('#sign-up-form').hide()
+  $('#sign-in-form').hide()
+
 }
 
 const signInFailureAtUserInterface = () => {
@@ -64,7 +67,9 @@ const createNewGameSuccess = (responseFromServer) => {
   $('#display-game-message').css('color', 'green')
   store.game = responseFromServer.game
   console.log(store.game)
-  $('').html('YOU HAVE STARTED A NEW GAME!')
+  $('').html('A GAME IS IN PROGRESS!')
+  $('#divWithBoard').show()
+
 }
 
 const createNewGameFailure = function () {

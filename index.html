@@ -36,9 +36,9 @@
         </form>
         <br />
       </div>
-      <p style="font-size: 30px"> <strong> OR </strong></p>
       <div class="makeInline">
         <form id="sign-in-form">
+          <p style="font-size: 30px"> <strong> OR </strong></p>
           <h3 id="display-log-in-message">
             <!--Status shall be displayed here-->
           </h3>
@@ -60,16 +60,9 @@
     </div>
   </div>
   <br>
-  <section id="section-gameBoard">
-    <form id="change-password-form">
-      <fieldset>
-        <legend> Want to change password? Click here </legend>
-        <input placeholder="Enter old password" name="passwords[old]" type="password" />
-        <input placeholder="Enter new password" name="passwords[new]" type="password" />
-        <input type="submit" id="change-password-button" value="Change password" />
-      </fieldset>
-    </form>
-    <h3>Click the board to play</h3>
+  <section id="user-options-after-sign-in" style="margin-left: 25px">
+
+    <h3>Click <button id="new-game-button" class="btn btn-success">NEW GAME</button> to play</h3>
     <h3 id="display-change-password-message">
       <!--Status shall be displayed here-->
     </h3>
@@ -96,8 +89,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br> <button id="new-game-button" class="btn btn-success">
-            New Game</button>
+        <div class="col-12 col-sm-2 tic-panel"> PANEL <br>Score:<br>
+
           <br />
           <hr />
           <button class="btn btn-secondary" id="reset-button"> Reset </button>
@@ -106,7 +99,17 @@
         <div class="col-12 col-sm-2 extra-padding"> </div>
       </div>
     </div>
+    <form id="change-password-form">
+      <fieldset>
+        <legend> Want to change password? Click here </legend>
+        <input placeholder="Enter old password" name="passwords[old]" type="password" />
+        <input placeholder="Enter new password" name="passwords[new]" type="password" />
+        <input type="submit" id="change-password-button" value="Change password" />
+      </fieldset>
+    </form>
+    <br />
   </section>
+
 </body>
 
 </html>
