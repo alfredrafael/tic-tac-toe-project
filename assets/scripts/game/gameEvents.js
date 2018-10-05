@@ -4,12 +4,6 @@ const ajaxCalls = require(`../api.js`)
 const userInterface = require(`../ui.js`)
 const store = require('../store')
 
-const gameBoard = ['', '', '', '', '', '', '', '', ''
-  // 0, 1, 2
-  // 3, 4, 5
-  // 6, 7, 8
-]
-
 const dataToUpdateGameApi = {
   'game': {
     'cell': {
@@ -31,7 +25,7 @@ const createNewGame = () => {
 }
 
 const clearBoard = function () {
-  for (let i = 0; i < gameBoard.length; i++) {
+  for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9 
     $(`#game-box-${i}`).html('')
     createNewGame()
   }
@@ -42,17 +36,6 @@ const updateGame = function (dataToUpdateGameApi) {
     .then(userInterface.updateGameSuccess)
     .catch(userInterface.updateGameFailure)
 }
-
-/*
-const clearBoard = function () {
-  if (checkForResult) {
-    for (let i = 0; i < 9; i++) {
-      $().val('')
-    }
-  }
-}
-*/
-
 
 const clickedBox = function (i) {
   // alert('a box was clicked')
@@ -67,36 +50,45 @@ const clickedBox = function (i) {
   // $(`#game-box-${i}`).attr('disabled', true)
   console.log(store.game)
   dataToUpdateGameApi.game.cell.index = i // lets store the value of game.cell.index into 'i'
-  dataToUpdateGameApi.game.cell.value = gameBoard[i]
+  dataToUpdateGameApi.game.cell.value = store.game.cells[i]
 
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
   checkForResult()
   store.toggleTurn++
 }
+/*
+const gameBoard = ['', '', '', '', '', '', '', '', ''
+  // 0, 1, 2
+  // 3, 4, 5
+  // 6, 7, 8
+]
+*/
+
 // create code so when you click on the div/board, it fires and translate that
 const checkForResult = () => {
-  console.log(gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2])
-  if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
+  console.log(store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2])
+  console.log(store.game.cells)
+  if (store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2] && store.game.cells[1] !== '') {
     $('#display-game-message').text('Victory row 1')
-  } else if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5]) {
+  } else if (store.game.cells[3] === store.game.cells[4] && store.game.cells[4] === store.game.cells[5] && store.game.cells[4] !== '') {
     $('#display-game-message').html('Victory row 2')
     console.log('Row 2 victory')
-  } else if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]) {
+  } else if (store.game.cells[6] === store.game.cells[7] && store.game.cells[7] === store.game.cells[8] && store.game.cells[7] !== '') {
     $('#display-game-message').html('Victory row 3')
     console.log('Row 3 victory')
-  } else if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6]) {
+  } else if (store.game.cells[0] === store.game.cells[3] && store.game.cells[3] === store.game.cells[6] && store.game.cells[3] !== '') {
     console.log('Column 1 victory')
     $('#display-game-message').html('Victory column 1')
-  } else if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7]) {
+  } else if (store.game.cells[1] === store.game.cells[4] && store.game.cells[4] === store.game.cells[7] && store.game.cells[7] !== '') {
     console.log('Column 2 victory')
     $('#display-game-message').html('Column 2 victory')
-  } else if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8]) {
+  } else if (store.game.cells[2] === store.game.cells[5] && store.game.cells[5] === store.game.cells[8] && store.game.cells[5] !== '') {
     console.log('Column 3 victory')
     $('#display-game-message').html('Column 3 victory')
-  } else if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8]) {
+  } else if (store.game.cells[0] === store.game.cells[4] && store.game.cells[4] === store.game.cells[8] && store.game.cells[4] !== '') {
     console.log('Diagonal 1 victory row')
     $('#display-game-message').html('Diagonal 1 victory row')
-  } else if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]) {
+  } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[4] === store.game.cells[6] && store.game.cells[4] !== '') {
     console.log('Diagonal 2 victory')
     $('#display-game-message').html('Diagonal 2 victory')
   } else {
@@ -112,7 +104,6 @@ module.exports = {
   clickedBox,
   updateGame,
   checkForResult,
-  gameBoard,
   createNewGame,
   clearBoard
 }

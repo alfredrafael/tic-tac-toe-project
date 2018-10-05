@@ -1,7 +1,7 @@
 'use strict'
 const events = require('./events.js')
 const gameEvents = require('./game/gameEvents.js') // lo pido para este documento
-
+const store = require('./store.js')
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
 
@@ -15,7 +15,7 @@ $(() => {
   $('#change-password-form').on('submit', events.changePasswordEvent)
   $('#sign-out-button').on('click', events.signOutEvent)
 
-  for (let i = 0; i < gameEvents.gameBoard.length; i++) {
+  for (let i = 0; i < 9; i++) {
     $(`#game-box-${i}`).on('click', function () {
       gameEvents.clickedBox(i)
     })

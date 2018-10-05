@@ -41,6 +41,11 @@ const signOutSuccessAtUserInterface = () => {
   $('#display-log-in-message').css('color', 'green')
   $('#section-gameBoard').hide()
   $('#sign-out-button').trigger('reset')
+  $('#divWithBoard').hide()
+  $('#change-password-form').hide()
+  $('#sign-in-form').show()
+  $('#sign-up-form').show()
+  $('#user-options-after-sign-in').hide()
 }
 
 const signOutFailureAtUserInterface = () => {
