@@ -14,6 +14,13 @@ const dataToUpdateGameApi = {
   }
 }
 
+const clearBoard = function () {
+  for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9 
+    $(`#game-box-${i}`).html('')
+    createNewGame()
+  }
+}
+
 const createNewGame = () => {
   console.log('The create new game function fired')
   store.game = {}
@@ -24,12 +31,6 @@ const createNewGame = () => {
     .catch(userInterface.createNewGameFailure)
 }
 
-const clearBoard = function () {
-  for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9 
-    $(`#game-box-${i}`).html('')
-    createNewGame()
-  }
-}
 
 const updateGame = function (dataToUpdateGameApi) {
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
@@ -55,7 +56,11 @@ const clickedBox = function (i) {
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
   checkForResult()
   store.toggleTurn++
+
+  // $('.top-left-row-0').off() ///////////////////////////////////////////////////////////
+
 }
+
 /*
 const gameBoard = ['', '', '', '', '', '', '', '', ''
   // 0, 1, 2
@@ -91,8 +96,10 @@ const checkForResult = () => {
   } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[4] === store.game.cells[6] && store.game.cells[4] !== '') {
     console.log('Diagonal 2 victory')
     $('#display-game-message').html('Diagonal 2 victory')
+  } else if (store.toggleTurn >= 8) {
+    $('#display-game-message').html('Its a Tie')
   } else {
-    $('#display-game-message').html('None of the conditions for winning were found')
+    $('#display-game-message').html('')
     console.log('None of the conditions for winning were found')
   }
 }

@@ -74,7 +74,6 @@ const createNewGameSuccess = (responseFromServer) => {
   console.log(store.game)
   $('').html('A GAME IS IN PROGRESS!')
   $('#divWithBoard').show()
-
 }
 
 const createNewGameFailure = function () {
