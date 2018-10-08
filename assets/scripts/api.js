@@ -63,7 +63,7 @@ const createNewGameAjaxCall = function (responseFromServer) {
 
 const updateGameAjaxCall = (dataPassedToTheDataBase) => {
   return $.ajax({
-    url: config.apiUrl + /games/ + store.game.id,
+    url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
       contentType: 'application/json',
@@ -74,7 +74,7 @@ const updateGameAjaxCall = (dataPassedToTheDataBase) => {
 }
 const showStatsAjaxCall = function () { //////////////////////////////////////////////////////////
   return $.ajax({
-    url: config.apiUrl + /games/ + store.game.id,
+    url: config.apiUrl + '/games/',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token

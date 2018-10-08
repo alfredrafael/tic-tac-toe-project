@@ -59,7 +59,12 @@ const clickedBox = function (i) {
     $(`#game-box-${i}`).text('O')
     store.game.cells[i] = 'O'
   }
-  // $(`#game-box-${i}`).attr('disabled', true)
+  if ($(`#game-box-${i}`).text() === '') {
+    // do not put anything in the tic-box
+    alert('wepa')
+  }
+
+
   console.log(store.game)
   dataToUpdateGameApi.game.cell.index = i // lets store the value of game.cell.index into 'i'
   dataToUpdateGameApi.game.cell.value = store.game.cells[i]
@@ -67,9 +72,6 @@ const clickedBox = function (i) {
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
   checkForResult()
   store.toggleTurn++
-
-  // $('.top-left-row-0').off() ///////////////////////////////////////////////////////////
-
 }
 
 /*
