@@ -14,6 +14,8 @@ const dataToUpdateGameApi = {
   }
 }
 
+let gameOver = false; /////////////////////////////////////////////////////////
+
 const clearBoard = function () {
   for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9 
     $(`#game-box-${i}`).html('')
@@ -21,10 +23,19 @@ const clearBoard = function () {
   }
 }
 
+const showStatsEvent = function () {////////////////////////////////
+  event.preventDefault()
+  ajaxCalls.showStatsAjaxCall()
+    .then(userInterface.showStatsAtUserInterface)
+    .catch(userInterface.showStatsErrorMessage)
+}
+
 const createNewGame = () => {
   console.log('The create new game function fired')
   store.game = {}
   store.toggleTurn = 0
+  gameOver = false //////////////////////////////////////////////////////////
+  showStatsEvent() //////////////////////////////////////////////////////////
 
   ajaxCalls.createNewGameAjaxCall()
     .then(userInterface.createNewGameSuccess)
@@ -75,42 +86,49 @@ const checkForResult = () => {
   console.log(store.game.cells)
   if (store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2] && store.game.cells[1] !== '') {
     $('#display-game-message').text('Victory row 1')
+    gameOver = true
+
   } else if (store.game.cells[3] === store.game.cells[4] && store.game.cells[4] === store.game.cells[5] && store.game.cells[4] !== '') {
     $('#display-game-message').html('Victory row 2')
-    console.log('Row 2 victory')
+    gameOver = true
+
   } else if (store.game.cells[6] === store.game.cells[7] && store.game.cells[7] === store.game.cells[8] && store.game.cells[7] !== '') {
     $('#display-game-message').html('Victory row 3')
-    console.log('Row 3 victory')
+    gameOver = true
+
   } else if (store.game.cells[0] === store.game.cells[3] && store.game.cells[3] === store.game.cells[6] && store.game.cells[3] !== '') {
-    console.log('Column 1 victory')
+    gameOver = true
+
     $('#display-game-message').html('Victory column 1')
   } else if (store.game.cells[1] === store.game.cells[4] && store.game.cells[4] === store.game.cells[7] && store.game.cells[7] !== '') {
-    console.log('Column 2 victory')
+    gameOver = true
+
     $('#display-game-message').html('Column 2 victory')
   } else if (store.game.cells[2] === store.game.cells[5] && store.game.cells[5] === store.game.cells[8] && store.game.cells[5] !== '') {
-    console.log('Column 3 victory')
     $('#display-game-message').html('Column 3 victory')
+    gameOver = true
+
   } else if (store.game.cells[0] === store.game.cells[4] && store.game.cells[4] === store.game.cells[8] && store.game.cells[4] !== '') {
-    console.log('Diagonal 1 victory row')
     $('#display-game-message').html('Diagonal 1 victory row')
+    gameOver = true
+
   } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[4] === store.game.cells[6] && store.game.cells[4] !== '') {
-    console.log('Diagonal 2 victory')
     $('#display-game-message').html('Diagonal 2 victory')
+    gameOver = true
   } else if (store.toggleTurn >= 8) {
     $('#display-game-message').html('Its a Tie')
+    gameOver = true
   } else {
     $('#display-game-message').html('')
-    console.log('None of the conditions for winning were found')
+    gameOver = false
   }
 }
-
-// If there are 9 moves 'store.toggle >= 9'... 'its a tie... '
-// then...make the checkForResult() connect to the UI
 
 module.exports = {
   clickedBox,
   updateGame,
   checkForResult,
   createNewGame,
-  clearBoard
+  clearBoard,
+  showStatsEvent ////////////////////////////////////////////////////////////////////
 }

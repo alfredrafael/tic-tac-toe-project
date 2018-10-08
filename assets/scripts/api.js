@@ -72,6 +72,15 @@ const updateGameAjaxCall = (dataPassedToTheDataBase) => {
     data: dataPassedToTheDataBase
   })
 }
+const showStatsAjaxCall = function () { //////////////////////////////////////////////////////////
+  return $.ajax({
+    url: config.apiUrl + /games/ + store.game.id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 
 module.exports = {
   signUpAjaxCall,
@@ -79,5 +88,6 @@ module.exports = {
   signOutAtAjaxCall,
   changePasswordAjaxCall,
   createNewGameAjaxCall,
-  updateGameAjaxCall
+  updateGameAjaxCall,
+  showStatsAjaxCall ////////////////////////////////////////////////////////////
 }
