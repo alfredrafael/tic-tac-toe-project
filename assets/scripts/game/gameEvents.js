@@ -119,7 +119,7 @@ const checkForResult = () => {
     $('#display-game-message').html('Its a Tie')
     gameOver = true
   } else {
-    $('#display-game-message').html('')
+    $('#display-game-message').html('Game in progress')
     gameOver = false
   }
 }

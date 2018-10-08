@@ -73,7 +73,7 @@ const changePasswordFailureAtUserInterface = () => {
 
 const createNewGameSuccess = (responseFromServer) => {
   console.log(responseFromServer)
-  $('#display-game-message').html('Game in progress')
+  $('#display-game-message').html('Game started')
   $('#display-game-message').css('color', 'green')
   store.game = responseFromServer.game
   console.log(store.game)
