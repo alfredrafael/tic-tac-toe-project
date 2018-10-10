@@ -14,13 +14,6 @@ $(() => {
   $('#sign-in-form').on('submit', events.signInEvent)
   $('#change-password-form').on('submit', events.changePasswordEvent)
   $('#sign-out-button').on('click', events.signOutEvent)
-
-  for (let i = 0; i < 9; i++) {
-    $(`#game-box-${i}`).on('click', function () {
-      gameEvents.clickedBox(i)
-    })
-  }
-
   $('#new-game-button').on('click', gameEvents.createNewGame, gameEvents.clearBoard)
   $('#reset-button').on('click', gameEvents.clearBoard)
 })

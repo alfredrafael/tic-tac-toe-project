@@ -73,9 +73,9 @@ const changePasswordFailureAtUserInterface = () => {
 
 const createNewGameSuccess = (responseFromServer) => {
   console.log(responseFromServer)
-  $('#display-game-message').html('Game started')
   $('#display-game-message').css('color', 'green')
   store.game = responseFromServer.game
+  $('#display-game-message').html('Game started')
   $('#divWithBoard').show()
 }
 
@@ -91,8 +91,8 @@ const updateGameFailure = function () {
   $('#display-update-message').text('Game NOT updated!')
 }
 
-const showStatsAtUserInterface = function () {
-  $('#display-game-stats').html(`The total amount of games played is ${store.game.id}`)
+const showStatsAtUserInterface = function (resultFromAPI) {
+  $('#display-game-stats').html(`The total amount of games played is ${resultFromAPI.games.length}`)
   $('#display-game-stats').css("color", "green");
 
 }
