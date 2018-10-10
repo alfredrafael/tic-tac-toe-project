@@ -19,8 +19,9 @@ let gameOver = false; /////////////////////////////////////////////////////////
 const clearBoard = function () {
   for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9 
     $(`#game-box-${i}`).html('')
-    createNewGame()
   }
+  createNewGame()
+
 }
 
 const showStatsEvent = function () {////////////////////////////////
@@ -31,11 +32,10 @@ const showStatsEvent = function () {////////////////////////////////
 }
 
 const createNewGame = () => {
-  console.log('The create new game function fired')
   store.game = {}
   store.toggleTurn = 0
   gameOver = false //////////////////////////////////////////////////////////
-  showStatsEvent() //////////////////////////////////////////////////////////
+  // showStatsEvent() //////////////////////////////////////////////////////////
 
   ajaxCalls.createNewGameAjaxCall()
     .then(userInterface.createNewGameSuccess)
@@ -59,12 +59,7 @@ const clickedBox = function (i) {
     $(`#game-box-${i}`).text('O')
     store.game.cells[i] = 'O'
   }
-  if ($(`#game-box-${i}`).text() === '') {
-    // do not put anything in the tic-box
-    alert('wepa')
-  }
-
-
+  // $(`#game-box-${i}`).attr('disabled', true) ////////////////////////////////////////////
   console.log(store.game)
   dataToUpdateGameApi.game.cell.index = i // lets store the value of game.cell.index into 'i'
   dataToUpdateGameApi.game.cell.value = store.game.cells[i]
@@ -72,6 +67,9 @@ const clickedBox = function (i) {
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
   checkForResult()
   store.toggleTurn++
+
+  // $('.top-left-row-0').off() ///////////////////////////////////////////////////////////
+
 }
 
 /*

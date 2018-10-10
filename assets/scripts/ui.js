@@ -76,7 +76,6 @@ const createNewGameSuccess = (responseFromServer) => {
   $('#display-game-message').html('Game started')
   $('#display-game-message').css('color', 'green')
   store.game = responseFromServer.game
-  console.log(store.game)
   $('#divWithBoard').show()
 }
 

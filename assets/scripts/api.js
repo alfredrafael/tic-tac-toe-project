@@ -72,6 +72,7 @@ const updateGameAjaxCall = (dataPassedToTheDataBase) => {
     data: dataPassedToTheDataBase
   })
 }
+
 const showStatsAjaxCall = function () { //////////////////////////////////////////////////////////
   return $.ajax({
     url: config.apiUrl + '/games/',
@@ -81,6 +82,7 @@ const showStatsAjaxCall = function () { ////////////////////////////////////////
     }
   })
 }
+
 
 module.exports = {
   signUpAjaxCall,
