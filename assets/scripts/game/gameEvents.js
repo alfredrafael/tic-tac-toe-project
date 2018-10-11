@@ -40,11 +40,11 @@ const createNewGame = () => {
     })
     showStatsEvent()
   }
-
-  store.toggleTurn = 0
   ajaxCalls.createNewGameAjaxCall()
     .then(userInterface.createNewGameSuccess)
     .catch(userInterface.createNewGameFailure)
+
+  store.toggleTurn = 0
 }
 
 
@@ -65,9 +65,6 @@ const clickedBox = function (i) {
     store.game.cells[i] = 'O'
   }
 
-  // if i has a value, dont run... 
-
-  // $(`#game-box-${i}`).attr('disabled', true) ////////////////////////////////////////////
   console.log(store.game)
 
   dataToUpdateGameApi.game.cell.index = i // lets store the value of game.cell.index into 'i'
@@ -77,7 +74,7 @@ const clickedBox = function (i) {
   checkForResult()
   store.toggleTurn++
 
-  $(`#game-box-${i}`).off() ///////////////////////////////////////////////////////////
+  $(`#game-box-${i}`).off()
 }
 
 /*
@@ -147,5 +144,5 @@ module.exports = {
   checkForResult,
   createNewGame,
   clearBoard,
-  showStatsEvent ////////////////////////////////////////////////////////////////////
+  showStatsEvent
 }
