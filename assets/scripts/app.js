@@ -16,37 +16,4 @@ $(() => {
   $('#sign-out-button').on('click', events.signOutEvent)
   $('#new-game-button').on('click', gameEvents.createNewGame, gameEvents.clearBoard)
   $('#reset-button').on('click', gameEvents.clearBoard)
-  //$('.tic-box').on('click', gameEvents.clickedBox)
-
-  /*
-  for (let i = 0; i < 9; i++) {
-    $(`#game-box-${i}`).on('click', function () {
-      gameEvents.clickedBox(i)
-    })
-  }
-*/
-
-  /*
-    $('#game-box-0').on('click', gameEvents.clickedBox)
-    $('#game-box-1').on('click', gameEvents.clickedBox)
-    $('#game-box-2').on('click', gameEvents.clickedBox)
-    $('#game-box-3').on('click', gameEvents.clickedBox)
-    $('#game-box-4').on('click', gameEvents.clickedBox)
-    $('#game-box-5').on('click', gameEvents.clickedBox)
-    $('#game-box-6').on('click', gameEvents.clickedBox)
-  */
-
-  /*
-    $('.tic-box').on('click', () => alert('Hello tic-box'))
-    $('.top-left-row-0').on('click', () => alert('Hello long-class'))
-    $('.top-center-row-1').on('click', () => alert('Hello-long-class'))
-    $('.top-rigth-row-2').on('click', () => alert('Hello long-class'))
-    $('.middle-left-row-3').on('click', () => alert('Hello long-class'))
-    $('.middle-center-row-4').on('click', () => alert('Hello long-class'))
-    $('.middle-rigth-row-5').on('click', () => alert('Hello long-class'))
-    $('.bottom-left-row-6').on('click', () => alert('Hello long-class'))
-    $('.bottom-center-row-7').on('click', () => alert('Hello long-class'))
-    $('.bottom-rigth-row-8').on('click', () => alert('Hello long-class'))
-  */
-
 })

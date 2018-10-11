@@ -92,9 +92,8 @@ const updateGameFailure = function () {
 }
 
 const showStatsAtUserInterface = function (resultFromAPI) {
-  $('#display-game-stats').html(`Your total amount of games is ${resultFromAPI.games.length}`)
+  $('#display-game-stats').html(`The total amount of YOUR games is ${resultFromAPI.games.length}`)
   $('#display-game-stats').css("color", "grey");
-
 }
 
 const showStatsErrorMessage = function () {
@@ -115,9 +114,5 @@ module.exports = {
   createNewGameFailure,
   updateGameSuccess,
   updateGameFailure,
-  showStatsAtUserInterface ///////////////////////////////////////////////////////////////
+  showStatsAtUserInterface
 }
-
-/*
-
-*/

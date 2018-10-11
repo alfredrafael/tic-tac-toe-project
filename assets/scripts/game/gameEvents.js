@@ -14,7 +14,7 @@ const dataToUpdateGameApi = {
   }
 }
 
-let gameOver = false; /////////////////////////////////////////////////////////
+let gameOver = false
 
 const clearBoard = function () {
   for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9 
@@ -23,13 +23,12 @@ const clearBoard = function () {
   createNewGame()
 }
 
-const showStatsEvent = function () {////////////////////////////////
+const showStatsEvent = function () {
   event.preventDefault()
   ajaxCalls.showStatsAjaxCall()
     .then(userInterface.showStatsAtUserInterface)
     .catch(userInterface.showStatsErrorMessage)
 }
-
 
 const createNewGame = () => {
   // const myCurrentBox = event.target
@@ -74,7 +73,7 @@ const clickedBox = function (event) {
   checkForResult()
   store.toggleTurn++
 
-  $(currentBox).off() // ############################################################
+  $(currentBox).off()
 }
 
 /*
@@ -132,7 +131,7 @@ const checkForResult = () => {
   }
 
   if (gameOver === true) { // this conditional runs regardless of what happen in the previeous stements
-    for (let i = 0; i < 9; i++) { // iterate all the way thru 9... 
+    for (let i = 0; i < 9; i++) { // iterate all the way thru 9...
       $(`#game-box-${i}`).off() // turn those game-boxes off...
     }
   }
