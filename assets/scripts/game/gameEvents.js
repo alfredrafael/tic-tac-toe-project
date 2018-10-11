@@ -21,7 +21,6 @@ const clearBoard = function () {
     $(`#game-box-${i}`).html('')
   }
   createNewGame()
-
 }
 
 const showStatsEvent = function () {////////////////////////////////
@@ -31,20 +30,19 @@ const showStatsEvent = function () {////////////////////////////////
     .catch(userInterface.showStatsErrorMessage)
 }
 
+
 const createNewGame = () => {
+  // const myCurrentBox = event.target
   store.game = {}
+  store.toggleTurn = 0
   gameOver = false
-  for (let i = 0; i < 9; i++) {
-    $(`#game-box-${i}`).on('click', function () {
-      clickedBox(i)
-    })
-    showStatsEvent()
-  }
+  $('.tic-box').on('click', clickedBox)
+
+  showStatsEvent()
+
   ajaxCalls.createNewGameAjaxCall()
     .then(userInterface.createNewGameSuccess)
     .catch(userInterface.createNewGameFailure)
-
-  store.toggleTurn = 0
 }
 
 
@@ -54,27 +52,29 @@ const updateGame = function (dataToUpdateGameApi) {
     .catch(userInterface.updateGameFailure)
 }
 
-const clickedBox = function (i) {
-
-  console.log(store.game.cells)
+const clickedBox = function (event) {
+  const currentBox = event.target
+  const index = $(event.target).data('index')
+  console.log(currentBox)
+  // console.log(store.game.cells)
   if (store.toggleTurn % 2 === 0) {
-    $(`#game-box-${i}`).text('X')
-    store.game.cells[i] = 'X'
+    $(currentBox).text('X')
+    store.game.cells[index] = 'X'
   } else {
-    $(`#game-box-${i}`).text('O')
-    store.game.cells[i] = 'O'
+    $(currentBox).text('O')
+    store.game.cells[index] = 'O'
   }
 
   console.log(store.game)
 
-  dataToUpdateGameApi.game.cell.index = i // lets store the value of game.cell.index into 'i'
-  dataToUpdateGameApi.game.cell.value = store.game.cells[i]
+  dataToUpdateGameApi.game.cell.index = index // lets store the value of game.cell.index into 'i'
+  dataToUpdateGameApi.game.cell.value = store.game.cells[index]
 
   ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
   checkForResult()
   store.toggleTurn++
 
-  $(`#game-box-${i}`).off()
+  $(currentBox).off() // ############################################################
 }
 
 /*
