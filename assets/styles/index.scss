@@ -1,22 +1,40 @@
 @import '~bootstrap/scss/bootstrap';
 
+.sign-up-div {
+  float: left;
+  clear: both;
+  margin-right: 10em;
+}
+
+.sign-in-div {
+float: left;
+margin-top: -3px
+}
+
+.div-with-change-password-form {
+  margin-left: 25px;
+}
+/////// Game board related /////////
 .content {
   margin: .4vw 0;
   background: lightblue;
   padding: .4vw;
 }
+
 .extra-padding {
   text-align: center;
   margin: .4vw 0;
-  background: #F4CC70;
+ // background: #007bff;
   padding: .4vw;
 }
+
 .tic-panel {
   border: solid 2px black;
   margin: .4vw 0;
   background: #aae5ab;
   padding: .4vw;
 }
+
 .tic-box {
   border: solid black 4px;
   font-size: 5vw;
@@ -26,8 +44,9 @@
   width: 85px;
   height: 85px;
 }
+
 .tic-box:hover {
-  background: #20948B;
+  background: #aae5ab;
 }
 
 .makeInline2 {
@@ -36,5 +55,4 @@
 
 .makeInline1 {
   display: inline;
-
 }

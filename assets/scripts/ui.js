@@ -5,6 +5,8 @@ const store = require('./store')
 $(() => {
   $('#user-options-after-sign-in').hide()
   $('#divWithBoard').hide()
+  $('#sign-out-button').hide()
+  $('.div-with-change-password-form').hide()
 })
 
 const signUpSuccessAtUserInterface = () => {
@@ -12,6 +14,7 @@ const signUpSuccessAtUserInterface = () => {
   $('#display-sign-up-message').css('color', 'green')
   $("#display-sign-up-message").fadeOut(2000)
   $('#sign-up-form').trigger('reset')
+  $('#sign-out-button').show()
 }
 
 const signUpFailureAtUserInterface = () => {
@@ -29,6 +32,8 @@ const signInSuccessAtUserInterface = (response) => {
   $('#sign-in-form').trigger('reset')
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
+  $('#sign-out-button').show()
+  $('.div-with-change-password-form').show()
 
 }
 
@@ -50,6 +55,8 @@ const signOutSuccessAtUserInterface = () => {
   $('#sign-in-form').show()
   $('#sign-up-form').show()
   $('#user-options-after-sign-in').hide()
+  $('#sign-out-button').hide()
+  $('.div-with-change-password-form').hide()
 }
 
 const signOutFailureAtUserInterface = () => {
@@ -59,15 +66,16 @@ const signOutFailureAtUserInterface = () => {
 }
 
 const changePasswordSuccessAtUserInterface = () => {
-  $('#display-change-password-message').html('You have successfully change your password')
+  $('#display-change-password-message').html('You successfully changed your password')
   $('#display-change-password-message').css('color', 'green')
+  $('#display-change-password-message').fadeOut(2000)
   $('#change-password-form').trigger('reset')
 }
 
 const changePasswordFailureAtUserInterface = () => {
   $('#display-change-password-message').html('Sorry, we were not able to change your password')
   $('#display-change-password-message').css('color', 'red')
-  $("#display-change-password-message").fadeOut(5000)
+  $("#display-change-password-message").fadeOut(2000)
   $('#change-password-button').trigger('reset')
 }
 
@@ -92,7 +100,7 @@ const updateGameFailure = function () {
 }
 
 const showStatsAtUserInterface = function (resultFromAPI) {
-  $('#display-game-stats').html(`The total amount of YOUR games is ${resultFromAPI.games.length}`)
+  $('#display-game-stats').html(`Your total amount of games is ${resultFromAPI.games.length}`)
   $('#display-game-stats').css("color", "grey");
 }
 

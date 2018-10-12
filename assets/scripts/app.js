@@ -17,3 +17,5 @@ $(() => {
   $('#new-game-button').on('click', gameEvents.createNewGame, gameEvents.clearBoard)
   $('#reset-button').on('click', gameEvents.clearBoard)
 })
+
+
