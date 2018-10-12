@@ -27,6 +27,7 @@ const signUpFailureAtUserInterface = () => {
 const signInSuccessAtUserInterface = (response) => {
   $('#display-log-in-message').html('Sign in was successful')
   console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
+  $('#display-log-in-message').fadeOut(2000)
   $('#display-log-in-message').css('color', 'green')
   $('#user-options-after-sign-in').show()
   $('#sign-in-form').trigger('reset')
@@ -47,9 +48,10 @@ const signInFailureAtUserInterface = () => {
 const signOutSuccessAtUserInterface = () => {
   $('#display-log-in-message').html('You are successfully logged out')
   $('#display-log-in-message').css('color', 'green')
+  $('#display-log-in-message').fadeOut(5000)
+
   $('#section-gameBoard').hide()
   $('#sign-out-button').trigger('reset')
-  $("#display-log-in-message").fadeOut(5000)
   $('#divWithBoard').hide()
   $('#change-password-form').hide()
   $('#sign-in-form').show()
