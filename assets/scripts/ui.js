@@ -39,6 +39,12 @@ const signInSuccessAtUserInterface = (response) => {
   $('#sign-out-button').show()
   $('.div-with-change-password-form').show()
   $('#change-password-form').show()
+<<<<<<< HEAD
+=======
+
+  $('#display-game-message').text('')
+
+>>>>>>> html-work1
 
 }
 
