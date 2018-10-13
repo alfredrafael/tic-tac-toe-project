@@ -51,6 +51,7 @@ const signInFailureAtUserInterface = () => {
 
 const signOutSuccessAtUserInterface = () => {
   $('#display-log-in-message').html('You are successfully logged out')
+  $('#display-log-in-message').fadeOut(5000)
   $('#display-log-in-message').css('color', 'green')
   $('#section-gameBoard').hide()
   $('#sign-out-button').trigger('reset')
@@ -61,8 +62,6 @@ const signOutSuccessAtUserInterface = () => {
   $('#user-options-after-sign-in').hide()
   $('#sign-out-button').hide()
   $('.div-with-change-password-form').hide()
-
-  $('#display-log-in-message').fadeOut(5000)
   $('#change-password-form').hide()
 }
 
@@ -73,14 +72,13 @@ const signOutFailureAtUserInterface = () => {
 }
 
 const changePasswordSuccessAtUserInterface = () => {
-  $('#display-change-password-message').html('You successfully changed your password')
+  $('#display-change-password-message').text('You successfully changed your password')
   $('#display-change-password-message').css('color', 'green')
-  $('#display-change-password-message').fadeOut(2000)
+  $('#display-change-password-message').fadeOut(3000)
   $('#change-password-form').trigger('reset')
 
   $('.div-with-change-password-form').show() /////////////////////////////////
   $('#change-password-form').show()
-
 }
 
 const changePasswordFailureAtUserInterface = () => {
@@ -90,7 +88,7 @@ const changePasswordFailureAtUserInterface = () => {
   $('#change-password-button').trigger('reset')
 
   $('.div-with-change-password-form').show() /////////////////////////////////
-  $('#change-password-form').hide()
+  $('#change-password-form').show()
 }
 
 const createNewGameSuccess = (responseFromServer) => {
