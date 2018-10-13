@@ -4,7 +4,7 @@ const store = require('./store.js')
 const config = require('./config.js')
 
 const signUpAjaxCall = (dataFromDatabase) => {
-  console.log(dataFromDatabase)
+  //  console.log(dataFromDatabase)
 
   return $.ajax({
     url: config.apiUrl + '/sign-up',
@@ -14,7 +14,7 @@ const signUpAjaxCall = (dataFromDatabase) => {
 }
 
 const signInAjaxCall = (dataFromDatabase) => {
-  console.log(dataFromDatabase)
+  // console.log(dataFromDatabase)
 
   return $.ajax({
     url: config.apiUrl + '/sign-in',
@@ -24,7 +24,7 @@ const signInAjaxCall = (dataFromDatabase) => {
 }
 
 const changePasswordAjaxCall = (passwordDataFromDatabase) => {
-  console.log(passwordDataFromDatabase)
+  // console.log(passwordDataFromDatabase)
 
   return $.ajax({
     url: config.apiUrl + '/change-password',
@@ -37,14 +37,12 @@ const changePasswordAjaxCall = (passwordDataFromDatabase) => {
 }
 
 const signOutAtAjaxCall = () => {
-  console.log()
-
   return $.ajax({
     url: config.apiUrl + '/sign-out',
+    method: 'DELETE',
     headers: {
       Authorization: `Token token=${store.user.token}`
-    },
-    method: 'DELETE'
+    }
   })
 }
 

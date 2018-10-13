@@ -23,6 +23,7 @@ const clearBoard = function () {
   createNewGame()
 }
 
+
 const showStatsEvent = function () {
   event.preventDefault()
   ajaxCalls.showStatsAjaxCall()
@@ -54,7 +55,7 @@ const updateGame = function (dataToUpdateGameApi) {
 const clickedBox = function (event) {
   const currentBox = event.target
   const index = $(event.target).data('index')
-  console.log(currentBox)
+  // console.log(currentBox)
   // console.log(store.game.cells)
   if (store.toggleTurn % 2 === 0) {
     $(currentBox).text('X')
@@ -64,7 +65,7 @@ const clickedBox = function (event) {
     store.game.cells[index] = 'O'
   }
 
-  console.log(store.game)
+  // console.log(store.game)
 
   dataToUpdateGameApi.game.cell.index = index // lets store the value of game.cell.index into 'i'
   dataToUpdateGameApi.game.cell.value = store.game.cells[index]
@@ -86,8 +87,8 @@ const gameBoard = ['', '', '', '', '', '', '', '', ''
 
 // create code so when you click on the div/board, it fires and translate that
 const checkForResult = () => {
-  console.log(store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2])
-  console.log(store.game.cells)
+  // console.log(store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2])
+  // console.log(store.game.cells)
 
   if (store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2] && store.game.cells[1] !== '') {
     $('#display-game-message').text(`${store.game.cells[0]} wins the game`)

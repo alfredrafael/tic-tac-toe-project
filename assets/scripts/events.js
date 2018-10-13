@@ -30,7 +30,8 @@ const changePasswordEvent = (e) => {
     .catch(userInterface.changePasswordFailureAtUserInterface)
 }
 
-const signOutEvent = () => {
+const signOutEvent = (e) => {
+  e.preventDefault()
   ajaxCalls.signOutAtAjaxCall()
     .then(userInterface.signOutSuccessAtUserInterface)
     .catch(userInterface.signOutFailureAtUserInterface)

@@ -28,7 +28,7 @@ const signUpFailureAtUserInterface = () => {
 
 const signInSuccessAtUserInterface = (response) => {
   $('#display-log-in-message').html('Sign in was successful')
-  console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
+  // console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
   $('#display-log-in-message').fadeOut(2000)
   $('#display-log-in-message').css('color', 'green')
   $('#display-game-message').html('')
@@ -92,7 +92,7 @@ const changePasswordFailureAtUserInterface = () => {
 }
 
 const createNewGameSuccess = (responseFromServer) => {
-  console.log(responseFromServer)
+  // console.log(responseFromServer)
   $('#display-game-message').css('color', 'green')
   store.game = responseFromServer.game
   $('#display-game-message').html('Game started')
