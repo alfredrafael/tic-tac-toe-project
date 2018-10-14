@@ -7,8 +7,6 @@ $(() => {
   $('#divWithBoard').hide()
   $('#sign-out-button').hide()
   $('.div-with-change-password-form').hide()
-  $('#change-password-form').hide()
-
 })
 
 const signUpSuccessAtUserInterface = () => {
@@ -28,10 +26,9 @@ const signUpFailureAtUserInterface = () => {
 
 const signInSuccessAtUserInterface = (response) => {
   $('#display-log-in-message').html('Sign in was successful')
-  // console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
+  console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
   $('#display-log-in-message').fadeOut(2000)
   $('#display-log-in-message').css('color', 'green')
-  $('#display-game-message').html('')
   $('#user-options-after-sign-in').show()
   $('#sign-in-form').trigger('reset')
   $('#sign-up-form').hide()
@@ -39,6 +36,9 @@ const signInSuccessAtUserInterface = (response) => {
   $('#sign-out-button').show()
   $('.div-with-change-password-form').show()
   $('#change-password-form').show()
+
+  $('#display-game-message').text('')
+
 
 }
 
@@ -51,8 +51,9 @@ const signInFailureAtUserInterface = () => {
 
 const signOutSuccessAtUserInterface = () => {
   $('#display-log-in-message').html('You are successfully logged out')
-  $('#display-log-in-message').fadeOut(5000)
   $('#display-log-in-message').css('color', 'green')
+  $('#display-log-in-message').fadeOut(5000)
+
   $('#section-gameBoard').hide()
   $('#sign-out-button').trigger('reset')
   $('#divWithBoard').hide()
@@ -62,7 +63,6 @@ const signOutSuccessAtUserInterface = () => {
   $('#user-options-after-sign-in').hide()
   $('#sign-out-button').hide()
   $('.div-with-change-password-form').hide()
-  $('#change-password-form').hide()
 }
 
 const signOutFailureAtUserInterface = () => {
@@ -72,13 +72,10 @@ const signOutFailureAtUserInterface = () => {
 }
 
 const changePasswordSuccessAtUserInterface = () => {
-  $('#display-change-password-message').text('You successfully changed your password')
+  $('#display-change-password-message').html('You successfully changed your password')
   $('#display-change-password-message').css('color', 'green')
-  $('#display-change-password-message').fadeOut(3000)
+  $('#display-change-password-message').fadeOut(2000)
   $('#change-password-form').trigger('reset')
-
-  $('.div-with-change-password-form').show() /////////////////////////////////
-  $('#change-password-form').show()
 }
 
 const changePasswordFailureAtUserInterface = () => {
@@ -86,19 +83,14 @@ const changePasswordFailureAtUserInterface = () => {
   $('#display-change-password-message').css('color', 'red')
   $("#display-change-password-message").fadeOut(2000)
   $('#change-password-button').trigger('reset')
-
-  $('.div-with-change-password-form').show() /////////////////////////////////
-  $('#change-password-form').show()
 }
 
 const createNewGameSuccess = (responseFromServer) => {
-  // console.log(responseFromServer)
+  console.log(responseFromServer)
   $('#display-game-message').css('color', 'green')
   store.game = responseFromServer.game
   $('#display-game-message').html('Game started')
   $('#divWithBoard').show()
-
-  $('.div-with-change-password-form').show() /////////////////////////////////
 }
 
 const createNewGameFailure = function () {

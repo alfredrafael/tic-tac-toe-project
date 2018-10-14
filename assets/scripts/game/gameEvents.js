@@ -1,132 +1,147 @@
 'use strict'
 
+const ajaxCalls = require(`../api.js`)
+const userInterface = require(`../ui.js`)
 const store = require('../store')
 
-$(() => {
-  $('#user-options-after-sign-in').hide()
-  $('#divWithBoard').hide()
-  $('#sign-out-button').hide()
-  $('.div-with-change-password-form').hide()
-})
-
-const signUpSuccessAtUserInterface = () => {
-  $('#display-sign-up-message').html('Sign up was successful')
-  $('#display-sign-up-message').css('color', 'green')
-  $("#display-sign-up-message").fadeOut(2000)
-  $('#sign-up-form').trigger('reset')
-  $('#sign-out-button').show()
+const dataToUpdateGameApi = {
+  'game': {
+    'cell': {
+      'index': '',
+      'value': ''
+    },
+    'over': false
+  }
 }
 
-const signUpFailureAtUserInterface = () => {
-  $('#display-sign-up-message').html('Sign up was NOT successful')
-  $('#display-sign-up-message').css('color', 'red')
-  $("#display-sign-up-message").fadeOut(2000)
-  $('#sign-in-form').trigger('reset')
+let gameOver = false
+
+const clearBoard = function () {
+  for (let i = 0; i < 9; i++) { // meaning, the amount of cells, inside of game, isnde of store, threfore: 9
+    $(`#game-box-${i}`).html('')
+  }
+  createNewGame()
 }
 
-const signInSuccessAtUserInterface = (response) => {
-  $('#display-log-in-message').html('Sign in was successful')
-  console.log(store.user = response.user) // take the 'user' value from the response (reading from left ot right)and store it in "store", under the name of "user"
-  $('#display-log-in-message').fadeOut(2000)
-  $('#display-log-in-message').css('color', 'green')
-  $('#user-options-after-sign-in').show()
-  $('#sign-in-form').trigger('reset')
-  $('#sign-up-form').hide()
-  $('#sign-in-form').hide()
-  $('#sign-out-button').show()
-  $('.div-with-change-password-form').show()
-  $('#change-password-form').show()
-
-  $('#display-game-message').text('')
-
-
+const showStatsEvent = function () {
+  event.preventDefault()
+  ajaxCalls.showStatsAjaxCall()
+    .then(userInterface.showStatsAtUserInterface)
+    .catch(userInterface.showStatsErrorMessage)
 }
 
-const signInFailureAtUserInterface = () => {
-  $('#display-log-in-message').html('Sign in was NOT successful')
-  $('#display-log-in-message').css('color', 'red')
-  $("#display-log-in-message").fadeOut(2000)
-  $('#sign-in-button').trigger('reset')
+const createNewGame = () => {
+  // const myCurrentBox = event.target
+  store.game = {}
+  store.toggleTurn = 0
+  gameOver = false
+  $('.tic-box').on('click', clickedBox)
+
+  showStatsEvent()
+
+  ajaxCalls.createNewGameAjaxCall()
+    .then(userInterface.createNewGameSuccess)
+    .catch(userInterface.createNewGameFailure)
 }
 
-const signOutSuccessAtUserInterface = () => {
-  $('#display-log-in-message').html('You are successfully logged out')
-  $('#display-log-in-message').css('color', 'green')
-  $('#display-log-in-message').fadeOut(5000)
 
-  $('#section-gameBoard').hide()
-  $('#sign-out-button').trigger('reset')
-  $('#divWithBoard').hide()
-  $('#change-password-form').hide()
-  $('#sign-in-form').show()
-  $('#sign-up-form').show()
-  $('#user-options-after-sign-in').hide()
-  $('#sign-out-button').hide()
-  $('.div-with-change-password-form').hide()
+const updateGame = function (dataToUpdateGameApi) {
+  ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
+    .then(userInterface.updateGameSuccess)
+    .catch(userInterface.updateGameFailure)
 }
 
-const signOutFailureAtUserInterface = () => {
-  $('#display-log-in-message').html('You are NOT logged out')
-  $('#display-log-in-message').css('color', 'red')
-  $('#sign-out-button').trigger('reset')
+const clickedBox = function (event) {
+  const currentBox = event.target
+  const index = $(event.target).data('index')
+  console.log(currentBox)
+  // console.log(store.game.cells)
+  if (store.toggleTurn % 2 === 0) {
+    $(currentBox).text('X')
+    store.game.cells[index] = 'X'
+  } else {
+    $(currentBox).text('O')
+    store.game.cells[index] = 'O'
+  }
+
+  console.log(store.game)
+
+  dataToUpdateGameApi.game.cell.index = index // lets store the value of game.cell.index into 'i'
+  dataToUpdateGameApi.game.cell.value = store.game.cells[index]
+
+  ajaxCalls.updateGameAjaxCall(dataToUpdateGameApi)
+  checkForResult()
+  store.toggleTurn++
+
+  $(currentBox).off()
 }
 
-const changePasswordSuccessAtUserInterface = () => {
-  $('#display-change-password-message').html('You successfully changed your password')
-  $('#display-change-password-message').css('color', 'green')
-  $('#display-change-password-message').fadeOut(2000)
-  $('#change-password-form').trigger('reset')
-}
+/*
+const gameBoard = ['', '', '', '', '', '', '', '', ''
+  // 0, 1, 2
+  // 3, 4, 5
+  // 6, 7, 8
+]
+*/
 
-const changePasswordFailureAtUserInterface = () => {
-  $('#display-change-password-message').html('Sorry, we were not able to change your password')
-  $('#display-change-password-message').css('color', 'red')
-  $("#display-change-password-message").fadeOut(2000)
-  $('#change-password-button').trigger('reset')
-}
+// create code so when you click on the div/board, it fires and translate that
+const checkForResult = () => {
+  console.log(store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2])
+  console.log(store.game.cells)
 
-const createNewGameSuccess = (responseFromServer) => {
-  console.log(responseFromServer)
-  $('#display-game-message').css('color', 'green')
-  store.game = responseFromServer.game
-  $('#display-game-message').html('Game started')
-  $('#divWithBoard').show()
-}
+  if (store.game.cells[0] === store.game.cells[1] && store.game.cells[1] === store.game.cells[2] && store.game.cells[1] !== '') {
+    $('#display-game-message').text(`${store.game.cells[0]} wins the game`)
+    gameOver = true
 
-const createNewGameFailure = function () {
-  $('#display-game-message').text('CANT CREATE THE GAME!')
-}
+  } else if (store.game.cells[3] === store.game.cells[4] && store.game.cells[4] === store.game.cells[5] && store.game.cells[4] !== '') {
+    $('#display-game-message').text(`${store.game.cells[3]} wins the game`)
+    gameOver = true
 
-const updateGameSuccess = function () {
-  $('#display-game-message').text('Game updated!')
-}
+  } else if (store.game.cells[6] === store.game.cells[7] && store.game.cells[7] === store.game.cells[8] && store.game.cells[7] !== '') {
+    $('#display-game-message').text(`${store.game.cells[6]} wins the game`)
+    gameOver = true
 
-const updateGameFailure = function () {
-  $('#display-update-message').text('Game NOT updated!')
-}
+  } else if (store.game.cells[0] === store.game.cells[3] && store.game.cells[3] === store.game.cells[6] && store.game.cells[3] !== '') {
+    $('#display-game-message').text(`${store.game.cells[0]} wins the game`)
+    gameOver = true
 
-const showStatsAtUserInterface = function (resultFromAPI) {
-  $('#display-game-stats').html(`Your total amount of games is ${resultFromAPI.games.length}`)
-  $('#display-game-stats').css("color", "grey");
-}
+  } else if (store.game.cells[1] === store.game.cells[4] && store.game.cells[4] === store.game.cells[7] && store.game.cells[7] !== '') {
+    $('#display-game-message').text(`${store.game.cells[1]} wins the game`)
+    gameOver = true
 
-const showStatsErrorMessage = function () {
-  $('#display-game-stats').html(`At the moment, I am unable to retrieve the total number of games`)
-  $('#display-game-stats').css("color", "red");
+  } else if (store.game.cells[2] === store.game.cells[5] && store.game.cells[5] === store.game.cells[8] && store.game.cells[5] !== '') {
+    $('#display-game-message').text(`${store.game.cells[2]} wins the game`)
+    gameOver = true
+
+  } else if (store.game.cells[0] === store.game.cells[4] && store.game.cells[4] === store.game.cells[8] && store.game.cells[4] !== '') {
+    $('#display-game-message').text(`${store.game.cells[0]} wins the game`)
+    gameOver = true
+
+  } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[4] === store.game.cells[6] && store.game.cells[4] !== '') {
+    $('#display-game-message').text(`${store.game.cells[2]} wins the game`)
+    gameOver = true
+
+  } else if (store.toggleTurn >= 8) {
+    $('#display-game-message').html('Its a Tie')
+    gameOver = true
+
+  } else {
+    $('#display-game-message').html('Game in progress')
+    gameOver = false
+  }
+
+  if (gameOver === true) { // this conditional runs regardless of what happen in the previeous stements
+    for (let i = 0; i < 9; i++) { // iterate all the way thru 9...
+      $(`#game-box-${i}`).off() // turn those game-boxes off...
+    }
+  }
 }
 
 module.exports = {
-  signUpSuccessAtUserInterface,
-  signUpFailureAtUserInterface,
-  signInSuccessAtUserInterface,
-  signInFailureAtUserInterface,
-  signOutSuccessAtUserInterface,
-  signOutFailureAtUserInterface,
-  changePasswordSuccessAtUserInterface,
-  changePasswordFailureAtUserInterface,
-  createNewGameSuccess,
-  createNewGameFailure,
-  updateGameSuccess,
-  updateGameFailure,
-  showStatsAtUserInterface
+  clickedBox,
+  updateGame,
+  checkForResult,
+  createNewGame,
+  clearBoard,
+  showStatsEvent
 }

@@ -15,6 +15,7 @@ const signUpEvent = (e) => {
 
 const signInEvent = (e) => {
   e.preventDefault(e)
+  console.log(e)
   const dataComingFromDataBase = getFormFields(event.target)
   ajaxCalls.signInAjaxCall(dataComingFromDataBase)
     .then(userInterface.signInSuccessAtUserInterface)
@@ -30,8 +31,8 @@ const changePasswordEvent = (e) => {
     .catch(userInterface.changePasswordFailureAtUserInterface)
 }
 
-const signOutEvent = (e) => {
-  e.preventDefault()
+const signOutEvent = () => {
+  console.log('Sign out is running')
   ajaxCalls.signOutAtAjaxCall()
     .then(userInterface.signOutSuccessAtUserInterface)
     .catch(userInterface.signOutFailureAtUserInterface)
