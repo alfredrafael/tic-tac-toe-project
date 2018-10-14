@@ -9,6 +9,7 @@ const store = require('./store.js')
 // require('./example')
 
 $(() => {
+  console.log('You are in the tic-tac-toe project console :) ')
   $('#sign-up-form').on('submit', events.signUpEvent)
   $('#sign-in-form').on('submit', events.signInEvent)
   $('#change-password-form').on('submit', events.changePasswordEvent)
@@ -16,5 +17,6 @@ $(() => {
   $('#new-game-button').on('click', gameEvents.createNewGame, gameEvents.clearBoard)
   $('#reset-button').on('click', gameEvents.clearBoard)
 })
+
 
 
